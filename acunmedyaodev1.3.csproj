@@ -1,11 +1,62 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+using System;
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>acunmedyaodev1._3</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Basit Hesap Makinesi ===");
 
-</Project>
+        Console.Write("Birinci sayıyı girin: ");
+        double sayi1 = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("İkinci sayıyı girin: ");
+        double sayi2 = Convert.ToDouble(Console.ReadLine());
+
+        Console.WriteLine("Yapmak istediğiniz işlemi seçin:");
+        Console.WriteLine("+ : Toplama");
+        Console.WriteLine("- : Çıkarma");
+        Console.WriteLine("* : Çarpma");
+        Console.WriteLine("/ : Bölme");
+
+        Console.Write("İşlem seçiniz: ");
+        string input = Console.ReadLine(); // Kullanıcıdan input al
+
+        if (string.IsNullOrEmpty(input) || input.Length > 1) // Geçersiz giriş kontrolü
+        {
+            Console.WriteLine("Geçersiz işlem girdiniz!");
+            return; // Programı sonlandır
+        }
+
+        char islem = input[0]; // İlk karakteri al
+        double sonuc = 0; // Sonuç değişkenini tanımla
+
+        switch (islem)
+        {
+            case '+':
+                sonuc = sayi1 + sayi2;
+                break;
+            case '-':
+                sonuc = sayi1 - sayi2;
+                break;
+            case '*':
+                sonuc = sayi1 * sayi2;
+                break;
+            case '/':
+                if (sayi2 != 0)
+                {
+                    sonuc = sayi1 / sayi2;
+                }
+                else
+                {
+                    Console.WriteLine("Hata! Bir sayı 0'a bölünemez.");
+                    return; // Programı burada sonlandır
+                }
+                break;
+            default:
+                Console.WriteLine("Geçersiz işlem girdiniz!");
+                return;
+        }
+
+        Console.WriteLine("Sonuç: " + sonuc);
+    }
+}
