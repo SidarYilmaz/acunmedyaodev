@@ -1,11 +1,41 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+using System;
+using System.Text.RegularExpressions;
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>acunmedyaodev1._4</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Şifre Güçlülüğünü Kontrol Etme ===");
+        Console.Write("Şifrenizi girin: ");
+        string sifre = Console.ReadLine();
 
-</Project>
+        if (SifreGucluMu(sifre))
+        {
+            Console.WriteLine("✅ Güçlü bir şifre girdiniz!");
+        }
+        else
+        {
+            Console.WriteLine("❌ Şifreniz zayıf! Lütfen aşağıdaki kurallara uygun bir şifre belirleyin:");
+            Console.WriteLine("- En az 8 karakter uzunluğunda olmalı.");
+            Console.WriteLine("- En az bir büyük harf içermeli.");
+            Console.WriteLine("- En az bir özel karakter (@, #, $, %) içermeli.");
+        }
+    }
+
+    static bool SifreGucluMu(string sifre)
+    {
+        // En az 8 karakter kontrolü
+        if (sifre.Length < 8)
+            return false;
+
+        // Büyük harf kontrolü
+        if (!Regex.IsMatch(sifre, "[A-Z]"))
+            return false;
+
+        // Özel karakter kontrolü (@, #, $, %)
+        if (!Regex.IsMatch(sifre, "[@#$%]"))
+            return false;
+
+        return true; // Tüm şartları sağlıyorsa şifre güçlüdür
+    }
+}
