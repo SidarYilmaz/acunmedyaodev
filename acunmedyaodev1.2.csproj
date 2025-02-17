@@ -1,11 +1,49 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+using System;
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>acunmedyaodev1._2</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Lütfen 1 ile 7 arasında bir sayı girin: ");
+        int gunNumarasi;
+        
+        if (int.TryParse(Console.ReadLine(), out gunNumarasi))
+        {
+            string gunAdi;
+            
+            switch (gunNumarasi)
+            {
+                case 1:
+                    gunAdi = "Pazartesi";
+                    break;
+                case 2:
+                    gunAdi = "Salı";
+                    break;
+                case 3:
+                    gunAdi = "Çarşamba";
+                    break;
+                case 4:
+                    gunAdi = "Perşembe";
+                    break;
+                case 5:
+                    gunAdi = "Cuma";
+                    break;
+                case 6:
+                    gunAdi = "Cumartesi";
+                    break;
+                case 7:
+                    gunAdi = "Pazar";
+                    break;
+                default:
+                    gunAdi = "Geçersiz bir sayı girdiniz!";
+                    break;
+            }
 
-</Project>
+            Console.WriteLine("Girilen sayıya karşılık gelen gün: " + gunAdi);
+        }
+        else
+        {
+            Console.WriteLine("Lütfen geçerli bir sayı girin!");
+        }
+    }
+}
